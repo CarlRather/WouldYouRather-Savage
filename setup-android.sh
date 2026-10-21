@@ -55,7 +55,7 @@ cat > app/src/main/AndroidManifest.xml <<'EOF'
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
     <application
         android:theme="@android:style/Theme.Material.NoActionBar"
-        android:label="WYR Savage"
+        android:label="Would You Rather: Savage Edition"
         android:allowBackup="false">
         <activity
             android:name=".MainActivity"
