@@ -23,6 +23,8 @@ jobs:
 
       - name: Set up Android SDK
         uses: android-actions/setup-android@v3
+        with:
+          packages: 'platform-tools platforms;android-35 build-tools;35.0.0'
 
       - name: Generate Android project
         run: bash setup-android.sh
@@ -40,4 +42,5 @@ jobs:
         with:
           name: WouldYouRather-Savage-APK
           path: app/build/outputs/apk/debug/app-debug.apk
+          if-no-files-found: error
           
