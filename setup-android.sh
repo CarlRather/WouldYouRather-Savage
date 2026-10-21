@@ -5,8 +5,40 @@ set -e
 mkdir -p app/src/main/assets
 mkdir -p app/src/main/java/com/carlrather/wouldyourather
 
+# Copy game files
 cp index.html style.css script.js app/src/main/assets/
 
+# Generate launcher icon sizes from the uploaded image
+python3 -m pip install --quiet Pillow
+
+python3 - <<'PY'
+from PIL import Image
+from pathlib import Path
+
+source = Path("wyr-icon.png")
+if not source.exists():
+    raise SystemExit("ERROR: wyr-icon.png is missing from the repository root.")
+
+image = Image.open(source).convert("RGBA")
+image = image.resize((512, 512), Image.Resampling.LANCZOS)
+
+sizes = {
+    "mipmap-mdpi": 48,
+    "mipmap-hdpi": 72,
+    "mipmap-xhdpi": 96,
+    "mipmap-xxhdpi": 144,
+    "mipmap-xxxhdpi": 192,
+}
+
+for folder, size in sizes.items():
+    dest = Path("app/src/main/res") / folder
+    dest.mkdir(parents=True, exist_ok=True)
+    image.resize((size, size), Image.Resampling.LANCZOS).save(
+        dest / "ic_launcher.png"
+    )
+PY
+
+# Android project configuration
 cat > settings.gradle <<'EOF'
 pluginManagement {
     repositories {
@@ -45,8 +77,8 @@ android {
         applicationId 'com.carlrather.wouldyourather'
         minSdk 23
         targetSdk 28
-        versionCode 1
-        versionName '1.0'
+        versionCode 2
+        versionName '1.1'
     }
 }
 EOF
@@ -56,6 +88,7 @@ cat > app/src/main/AndroidManifest.xml <<'EOF'
     <application
         android:theme="@android:style/Theme.Material.NoActionBar"
         android:label="Would You Rather: Savage Edition"
+        android:icon="@mipmap/ic_launcher"
         android:allowBackup="false">
         <activity
             android:name=".MainActivity"
