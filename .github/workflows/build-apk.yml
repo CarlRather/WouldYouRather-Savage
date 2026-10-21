@@ -21,13 +21,16 @@ jobs:
           distribution: temurin
           java-version: '17'
 
+      - name: Set up Android SDK
+        uses: android-actions/setup-android@v3
+
+      - name: Generate Android project
+        run: bash setup-android.sh
+
       - name: Set up Gradle
         uses: gradle/actions/setup-gradle@v4
         with:
           gradle-version: '8.9'
-
-      - name: Set up Android SDK
-        uses: android-actions/setup-android@v3
 
       - name: Build APK
         run: gradle assembleDebug
@@ -36,5 +39,5 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: WouldYouRather-Savage-APK
-          path: '**/build/outputs/apk/debug/*.apk'
+          path: app/build/outputs/apk/debug/app-debug.apk
           
