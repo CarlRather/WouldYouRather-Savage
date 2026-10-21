@@ -1,0 +1,131 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#10091d">
+  <meta name="description" content="A savage, funny Would You Rather game.">
+  <link rel="manifest" href="manifest.json">
+  <link rel="stylesheet" href="style.css">
+  <title>Would You Rather — Savage Edition</title>
+</head>
+<body>
+  <main class="app">
+    <header class="header">
+      <div class="logo">WYR<span>+</span></div>
+      <div>
+        <h1>WOULD YOU RATHER?</h1>
+        <p class="subtitle">SAVAGE EDITION 💀</p>
+      </div>
+      <button id="installBtn" class="small-btn hidden">Install</button>
+    </header>
+
+    <section id="setup" class="panel">
+      <h2>Ready to get roasted? 🔥</h2>
+      <p class="muted">Choose your settings before the chaos begins.</p>
+
+      <label for="nickname">Your nickname</label>
+      <input id="nickname" maxlength="20" placeholder="e.g. Certified NPC">
+
+      <div class="two">
+        <div>
+          <label for="category">Category</label>
+          <select id="category">
+            <option value="Random">🎲 Random</option>
+            <option value="Anime">⚔️ Anime</option>
+            <option value="Gaming">🎮 Gaming</option>
+            <option value="Funny">😂 Funny</option>
+            <option value="Difficult">🧠 Difficult</option>
+          </select>
+        </div>
+        <div>
+          <label for="count">Questions</label>
+          <select id="count">
+            <option value="5">5 rounds</option>
+            <option value="10" selected>10 rounds</option>
+            <option value="15">15 rounds</option>
+            <option value="20">20 rounds</option>
+          </select>
+        </div>
+      </div>
+
+      <label for="timer">Timer per question</label>
+      <select id="timer">
+        <option value="0">No timer</option>
+        <option value="10">10 seconds 💀</option>
+        <option value="15" selected>15 seconds</option>
+        <option value="30">30 seconds</option>
+      </select>
+
+      <button id="startBtn" class="primary">START THE CHAOS 🔥</button>
+      <p class="tiny">Solo mode • No account • No internet needed after setup</p>
+    </section>
+
+    <section id="game" class="panel hidden">
+      <div class="game-top">
+        <span id="round">ROUND 1 / 10</span>
+        <span id="timerText">⏱️ 15s</span>
+      </div>
+
+      <div class="progress">
+        <div id="progressFill"></div>
+      </div>
+
+      <div class="question-tag" id="questionCategory">FUNNY</div>
+      <h2 id="questionText">Would you rather...</h2>
+
+      <div class="choices">
+        <button class="choice" data-choice="A">
+          <span class="choice-letter">A</span>
+          <span id="optionA"></span>
+        </button>
+        <div class="or">OR 💀</div>
+        <button class="choice" data-choice="B">
+          <span class="choice-letter">B</span>
+          <span id="optionB"></span>
+        </button>
+      </div>
+
+      <div id="result" class="result hidden" aria-live="polite">
+        <h3 id="resultTitle">CHOICE LOCKED</h3>
+        <p id="resultText"></p>
+        <p id="roastText" class="roast"></p>
+        <div class="reactions">
+          <button data-reaction="😂">😂</button>
+          <button data-reaction="💀">💀</button>
+          <button data-reaction="🔥">🔥</button>
+          <button data-reaction="😭">😭</button>
+        </div>
+      </div>
+
+      <button id="nextBtn" class="primary hidden">NEXT ROUND ➜</button>
+      <button id="quitBtn" class="text-btn">Quit game</button>
+    </section>
+
+    <section id="customPanel" class="panel">
+      <h2>📝 Make your own question</h2>
+      <p class="muted">Add your own A/B dilemma to your local question collection.</p>
+      <input id="customQuestion" maxlength="180" placeholder="Would you rather...">
+      <input id="customA" maxlength="100" placeholder="Option A">
+      <input id="customB" maxlength="100" placeholder="Option B">
+      <button id="addQuestionBtn" class="secondary">ADD QUESTION +</button>
+      <p id="customMessage" class="tiny"></p>
+    </section>
+
+    <section id="statsPanel" class="panel">
+      <h2>📊 Your stats</h2>
+      <div class="stats">
+        <div><strong id="totalPlayed">0</strong><span>Choices made</span></div>
+        <div><strong id="totalA">0</strong><span>Picked A</span></div>
+        <div><strong id="totalB">0</strong><span>Picked B</span></div>
+      </div>
+      <button id="resetStatsBtn" class="text-btn">Reset stats</button>
+    </section>
+
+    <footer>MADE FOR CHAOS 💜 <span id="offlineStatus">Checking offline support…</span></footer>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,12 @@
+  
+{
+  "name": "Would You Rather - Savage Edition",
+  "short_name": "WYR Savage",
+  "description": "A savage, funny offline Would You Rather game.",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#0b0712",
+  "theme_color": "#10091d",
+  "orientation": "portrait"
+}
